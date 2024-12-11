@@ -118,6 +118,8 @@ class MainWindow(QMainWindow):
         self.pushButton_4.clicked.connect(self.send_start_command)
         self.pushButton.setText("Stop")
         self.pushButton_4.setText("Start")
+        self.pushButton_2.setText("mod 1")
+        self.pushButton_3.setText("mod 2")
 
     def rename_buttons(self):
         # Cambiar los nombres de los botones
@@ -179,20 +181,20 @@ class MainWindow(QMainWindow):
                 values = parsed_data.split(",")
                 
                 # Asignar cada valor a la variable correspondiente
-                temp_avg = int(values[0].strip())  # T_Avg
-                temp_max = int(values[1].strip())  # T_Max
-                temp_min = int(values[2].strip())  # T_Min
-                hum_avg = int(values[3].strip())  # H_Avg
-                hum_max = int(values[4].strip())  # H_Max
-                hum_min = int(values[5].strip())  # H_Min
-                
+                # Asignar cada valor a la variable correspondiente
+                temp_avg = float(values[0].strip())  # T_Avg
+                temp_max = float(values[1].strip())  # T_Max
+                temp_min = float(values[2].strip())  # T_Min
+                hum_avg = float(values[3].strip())  # H_Avg
+                hum_max = float(values[4].strip())  # H_Max
+                hum_min = float(values[5].strip())  # H_Min
                 # Mostrar los valores promedio en los QLCDNumber
-                self.lcdNumber.display(temp_max)
-                self.lcdNumber_2.display(temp_min)
-                self.lcdNumber_3.display(temp_avg)
-                self.lcdNumber_4.display(hum_max)
-                self.lcdNumber_5.display(hum_min)
-                self.lcdNumber_6.display(hum_avg)
+                self.lcdNumber.display(int(round(temp_max)))
+                self.lcdNumber_2.display(int(round(temp_min)))
+                self.lcdNumber_3.display(int(round(temp_avg)))
+                self.lcdNumber_4.display(int(round(hum_max)))
+                self.lcdNumber_5.display(int(round(hum_min)))
+                self.lcdNumber_6.display(int(round(hum_avg)))
                 
                 # Guardar los datos en la base de datos
                 guardar_datos(data)
